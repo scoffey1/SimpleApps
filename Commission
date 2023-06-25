@@ -1,0 +1,35 @@
+import javax.swing.JOptionPane;
+
+public class SalesCommissionCalculator {
+    public static void main(String[] args) {
+        String input;
+        double sales;
+        double commissionRate;
+        double commission;
+
+        // Get the sales amount
+        input = JOptionPane.showInputDialog("Enter the sales amount:");
+        sales = Double.parseDouble(input);
+
+        // Determine the commission rate based on sales
+        if (sales <= 5000) {
+            commissionRate = 0.05; // 5% commission rate
+        } else if (sales <= 10000) {
+            commissionRate = 0.1; // 10% commission rate
+        } else if (sales <= 15000) {
+            commissionRate = 0.15; // 15% commission rate
+        } else {
+            commissionRate = 0.2; // 20% commission rate
+        }
+
+        // Calculate the commission
+        commission = sales * commissionRate;
+
+        // Display the commission
+        JOptionPane.showMessageDialog(null,
+                String.format("Sales: $%,.2f%nCommission Rate: %.2f%nCommission: $%,.2f", sales, commissionRate, commission));
+        System.exit(0);
+    }
+}
+
+  
