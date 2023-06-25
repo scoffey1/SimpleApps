@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class EmployeePay {
+    public static void main(String[] args) {
+        Scanner keyboard = new Scanner(System.in);
+
+        System.out.print("Enter the number of employees: ");
+        int numEmployees = keyboard.nextInt();
+        keyboard.nextLine(); // Consume the newline character
+
+        String[] names = new String[numEmployees];
+        double[] payRates = new double[numEmployees];
+        int[] hoursWorked = new int[numEmployees];
+        double[] grossPay = new double[numEmployees];
+
+        // Get employee data
+        getEmployeeData(names, payRates, hoursWorked, keyboard);
+
+        // Calculate gross pay
+        calculateGrossPay(payRates, hoursWorked, grossPay);
+
+        // Display employee details
+        displayEmployeeDetails(names, payRates, hoursWorked, grossPay);
+    }
+
+    private static void getEmployeeData(String[] names, double[] payRates, int[] hoursWorked, Scanner keyboard) {
+        for (int i = 0; i < names.length; i++) {
+            System.out.printf("Enter the name of employee #%d: ", (i + 1));
+            names[i] = keyboard.nextLine();
+
+            System.out.printf("Enter the pay rate for %s: ", names[i]);
+            payRates[i] = keyboard.nextDouble();
+
+            System.out.printf("Enter the hours worked by %s: ", names[i]);
+            hoursWorked[i] = keyboard.nextInt();
+
+            keyboard.nextLine(); // Consume the newline character
+        }
+    }
+
+    private static void calculateGrossPay(double[] payRates, int[] hoursWorked, double[] grossPay) {
+        for (int i = 0; i < payRates.length; i++) {
+            grossPay[i] = payRates[i] * hoursWorked[i];
+        }
+    }
+
+    private static void displayEmployeeDetails(String[] names, double[] payRates, int[] hoursWorked, double[] grossPay) {
+        System.out.println("\nEmployee Details:");
+
+        for (int i = 0; i < names.length; i++) {
+            System.out.println("--------------------");
+            System.out.println("Name: " + names[i]);
+            System.out.println("Pay Rate: $" + payRates[i]);
+            System.out.println("Hours Worked: " + hoursWorked[i]);
+            System.out.println("Gross Pay: $" + grossPay[i]);
+        }
+    }
+}
+
